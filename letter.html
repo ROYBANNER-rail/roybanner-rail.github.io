@@ -42,7 +42,7 @@ mark{background:none;color:var(--gold)}
 let swx=null,swy=null;
 addEventListener("touchstart",e=>{swx=e.touches[0].clientX;swy=e.touches[0].clientY;},{passive:true});
 addEventListener("touchend",e=>{if(swx===null)return;const dx=e.changedTouches[0].clientX-swx,dy=e.changedTouches[0].clientY-swy;
-if(Math.abs(dx)>80&&Math.abs(dy)<60){location.href="./";}swx=null;},{passive:true});
+if(Math.abs(dx)>80&&Math.abs(dy)<60){if(window.top!==window)parent.postMessage("closeOvl","*");else location.href="./";}swx=null;},{passive:true});
 </script>
 <audio id="bgma" src="bgm.mp3" loop preload="auto"></audio>
 <script>
@@ -57,7 +57,16 @@ bgma.addEventListener("play",bgmUi);bgma.addEventListener("pause",bgmUi);
 function bgmSave(){try{localStorage.setItem("bgmT",bgma.currentTime);localStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
 setInterval(bgmSave,3000);addEventListener("pagehide",bgmSave);
 bgmBtn.addEventListener("click",e=>{e.stopPropagation();if(bgma.paused){bgmWant=true;bgma.play().catch(()=>{});}else{bgmWant=false;bgma.pause();}bgmSave();});
-if(bgmWant)bgma.play().catch(()=>{});
-document.addEventListener("pointerdown",e=>{if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(bgmWant&&bgma.paused)bgma.play().catch(()=>{});});
+if(bgmWant&&window.top===window)bgma.play().catch(()=>{});
+if(window.top===window)document.addEventListener("pointerdown",e=>{if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(bgmWant&&bgma.paused)bgma.play().catch(()=>{});});
+
+// 임베드(메인 오버레이) 모드: 자체 음악 끔, 돌아가기는 패널 닫기
+if(window.top!==window){
+  try{bgma.remove();}catch(e){}
+  if(bgmBtn) bgmBtn.style.display="none";
+  const back=document.querySelector('nav a[href="./"]');
+  if(back) back.addEventListener("click",e=>{e.preventDefault();parent.postMessage("closeOvl","*");});
+  addEventListener("touchend",e=>{},true);
+}
 </script>
 </body></html>
