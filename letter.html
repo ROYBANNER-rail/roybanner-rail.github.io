@@ -22,8 +22,8 @@ mark{background:none;color:var(--gold)}
 .sign{margin-top:54px;font-family:"Noto Serif KR",serif;font-size:15px;color:var(--gold);letter-spacing:.06em}
 .sign span{display:block;font-size:11px;color:var(--mut);letter-spacing:.2em;margin-top:8px}
 
-</style></head><body>
-<nav><b>PARK JONG HUN</b><a href="./">← 메인으로</a></nav>
+#bgmbtn{background:none;border:0;padding:2px;margin-left:18px;cursor:pointer;vertical-align:-2px;opacity:.85}#bgmbtn:hover{opacity:1}#bgmbtn rect,#bgmbtn path{fill:var(--gold);transform-origin:center;transform-box:fill-box}#bgmbtn .iq{display:none}#bgmbtn.playing .iq{display:inline}#bgmbtn.playing .ip{display:none}#bgmbtn.playing rect{animation:eq .9s ease-in-out infinite}#bgmbtn.playing .q2{animation-delay:.2s}#bgmbtn.playing .q3{animation-delay:.45s}@keyframes eq{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}</style></head><body>
+<nav><b>PARK JONG HUN</b><span><a href="./">← 메인으로</a><button id="bgmbtn" aria-label="배경음악"><svg class="ip" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3.5 1.8v12.4l10-6.2z"/></svg><svg class="iq" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect class="q1" x="1.4" y="4.5" width="2.4" height="7" rx="1.2"/><rect class="q2" x="6.8" y="2.5" width="2.4" height="11" rx="1.2"/><rect class="q3" x="12.2" y="5.5" width="2.4" height="5" rx="1.2"/></svg></button></span></nav>
 <div class="wrap">
 <div class="label">A LETTER — 전하는 말</div>
 <h1>만나서 반갑습니다,<br>박종훈입니다.</h1>
@@ -43,5 +43,21 @@ let swx=null,swy=null;
 addEventListener("touchstart",e=>{swx=e.touches[0].clientX;swy=e.touches[0].clientY;},{passive:true});
 addEventListener("touchend",e=>{if(swx===null)return;const dx=e.changedTouches[0].clientX-swx,dy=e.changedTouches[0].clientY-swy;
 if(Math.abs(dx)>80&&Math.abs(dy)<60){location.href="./";}swx=null;},{passive:true});
+</script>
+<audio id="bgma" src="bgm.mp3" loop preload="auto"></audio>
+<script>
+// 배경음악 — 페이지 간 이어 재생
+const bgmBtn=document.getElementById("bgmbtn"),bgma=document.getElementById("bgma");
+bgma.volume=0.6;
+let bgmWant=localStorage.getItem("bgmOn")!=="0";
+function bgmSeek(){try{const t=parseFloat(localStorage.getItem("bgmT"));if(t>0&&isFinite(t)&&Math.abs(bgma.currentTime-t)>1)bgma.currentTime=t;}catch(e){}}
+bgma.addEventListener("loadedmetadata",bgmSeek);bgmSeek();
+function bgmUi(){bgmBtn.classList.toggle("playing",!bgma.paused);}
+bgma.addEventListener("play",bgmUi);bgma.addEventListener("pause",bgmUi);
+function bgmSave(){try{localStorage.setItem("bgmT",bgma.currentTime);localStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
+setInterval(bgmSave,3000);addEventListener("pagehide",bgmSave);
+bgmBtn.addEventListener("click",e=>{e.stopPropagation();if(bgma.paused){bgmWant=true;bgma.play().catch(()=>{});}else{bgmWant=false;bgma.pause();}bgmSave();});
+if(bgmWant)bgma.play().catch(()=>{});
+document.addEventListener("pointerdown",e=>{if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(bgmWant&&bgma.paused)bgma.play().catch(()=>{});});
 </script>
 </body></html>
