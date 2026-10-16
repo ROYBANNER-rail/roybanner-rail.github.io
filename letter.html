@@ -1,0 +1,45 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>박종훈 — 전하는 말</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@600;900&display=swap">
+<style>
+:root{--bg:#0d0c0a;--gold:#d9a84e;--ink:#ede7da;--mut:#9a9284;--ln:rgba(237,231,218,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans KR",sans-serif;line-height:1.8;word-break:keep-all}
+.wrap{max-width:860px;margin:0 auto;padding:110px 6vw 90px}
+nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:18px 6vw;font-size:11px;letter-spacing:.3em;background:linear-gradient(rgba(13,12,10,.92),transparent)}
+nav b{color:var(--ink);font-weight:700}
+nav a{color:var(--mut);text-decoration:none;letter-spacing:.2em}
+nav a:hover{color:var(--gold)}
+.label{font-size:11px;letter-spacing:.42em;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.label::after{content:"";flex:1;height:1px;background:var(--ln)}
+h1{font-family:"Noto Serif KR",serif;font-weight:900;font-size:clamp(28px,4.6vw,44px);line-height:1.45;margin-bottom:18px}
+.lead{color:var(--mut);font-size:15px;max-width:620px;margin-bottom:54px}
+mark{background:none;color:var(--gold)}
+
+.letter p{font-family:"Noto Serif KR",serif;font-size:16.5px;line-height:2.2;color:#cfc8b8;margin-bottom:30px;max-width:640px}
+.sign{margin-top:54px;font-family:"Noto Serif KR",serif;font-size:15px;color:var(--gold);letter-spacing:.06em}
+.sign span{display:block;font-size:11px;color:var(--mut);letter-spacing:.2em;margin-top:8px}
+
+</style></head><body>
+<nav><b>PARK JONG HUN</b><a href="./">← 메인으로</a></nav>
+<div class="wrap">
+<div class="label">A LETTER — 전하는 말</div>
+<h1>이 페이지를 끝까지<br>봐 주신 분께.</h1>
+<div class="letter">
+<p>안녕하세요, 박종훈입니다. 크레딧과 숫자보다 먼저 보여드리고 싶은 것이 사실 이 글입니다.</p>
+<p>저는 빠른 길을 걸어본 적이 없습니다. 공부방에서 음악을 만났고, 작곡팀에서는 꼴찌로 시작했습니다. 제가 가진 재능은 하나였습니다. <mark>끝까지 남아 있는 것.</mark> 제일 먼저 와서 제일 늦게 가는 사람. 그렇게 1등이 됐고, 그렇게 극장에 제 노래가 걸렸습니다.</p>
+<p>무대 일을 하면서 알게 됐습니다. 무대는 서는 사람보다 세우는 사람이 더 일찍 오고, 더 늦게 갑니다. 저는 그 시간이 좋았습니다. 불이 켜지기 전의 무대, 도면과 실제가 맞아떨어지는 순간, 관객은 모르는 완성 같은 것들.</p>
+<p>문화가 사람의 출발선을 바꾼다는 것을 저는 경험으로 압니다. 제가 받은 것이 정확히 그것이었으니까요. 그래서 목표는 단순합니다. <mark>받은 무대를 더 많은 사람에게 돌려주는 것.</mark> 아이들 앞에서도, 기업의 캠페인에서도, AI와 함께하는 다음 작업에서도 그 방향은 같습니다.</p>
+<p>이 페이지의 어느 부분이 당신의 일과 닿아 있다면, 언제든 불러 주세요. 맡은 무대는 끝까지 책임지겠습니다.</p>
+</div>
+<div class="sign">박종훈 드림<span>ROY BANNER · 채온</span></div>
+</div>
+<script>
+let swx=null,swy=null;
+addEventListener("touchstart",e=>{swx=e.touches[0].clientX;swy=e.touches[0].clientY;},{passive:true});
+addEventListener("touchend",e=>{if(swx===null)return;const dx=e.changedTouches[0].clientX-swx,dy=e.changedTouches[0].clientY-swy;
+if(Math.abs(dx)>80&&Math.abs(dy)<60){location.href="./";}swx=null;},{passive:true});
+</script>
+</body></html>
