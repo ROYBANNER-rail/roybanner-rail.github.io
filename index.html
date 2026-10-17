@@ -310,12 +310,13 @@ addEventListener("touchend",e=>{if(swx===null)return;const dx=e.changedTouches[0
 // 배경음악 — 페이지 간 이어 재생
 const bgmBtn=document.getElementById("bgmbtn"),bgma=document.getElementById("bgma");
 bgma.volume=0.6;
-let bgmWant=localStorage.getItem("bgmOn")!=="0";
-function bgmSeek(){try{const t=parseFloat(localStorage.getItem("bgmT"));if(t>0&&isFinite(t)&&Math.abs(bgma.currentTime-t)>1)bgma.currentTime=t;}catch(e){}}
-bgma.addEventListener("loadedmetadata",bgmSeek);bgmSeek();
+let bgmWant=sessionStorage.getItem("bgmOn")!=="0";
+// 메인 진입은 언제나 처음부터
+try{sessionStorage.setItem("bgmT","0");}catch(e){}
+bgma.currentTime=0;
 function bgmUi(){bgmBtn.classList.toggle("playing",!bgma.paused);}
 bgma.addEventListener("play",bgmUi);bgma.addEventListener("pause",bgmUi);
-function bgmSave(){try{localStorage.setItem("bgmT",bgma.currentTime);localStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
+function bgmSave(){try{sessionStorage.setItem("bgmT",bgma.currentTime);sessionStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
 setInterval(bgmSave,3000);addEventListener("pagehide",bgmSave);
 bgmBtn.addEventListener("click",e=>{e.stopPropagation();if(bgma.paused){bgmWant=true;bgma.play().catch(()=>{});}else{bgmWant=false;bgma.pause();}bgmSave();});
 if(bgmWant)bgma.play().catch(()=>{});

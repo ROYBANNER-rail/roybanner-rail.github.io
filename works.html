@@ -137,12 +137,12 @@ mark{background:none;color:var(--gold)}
 <script>
 const bgmBtn=document.getElementById("bgmbtn"),bgma=document.getElementById("bgma");
 bgma.volume=0.6;
-let bgmWant=localStorage.getItem("bgmOn")!=="0";
-function bgmSeek(){try{const t=parseFloat(localStorage.getItem("bgmT"));if(t>0&&isFinite(t)&&Math.abs(bgma.currentTime-t)>1)bgma.currentTime=t;}catch(e){}}
+let bgmWant=sessionStorage.getItem("bgmOn")!=="0";
+function bgmSeek(){try{const t=parseFloat(sessionStorage.getItem("bgmT"));if(t>0&&isFinite(t)&&Math.abs(bgma.currentTime-t)>1)bgma.currentTime=t;}catch(e){}}
 bgma.addEventListener("loadedmetadata",bgmSeek);bgmSeek();
 function bgmUi(){bgmBtn.classList.toggle("playing",!bgma.paused);}
 bgma.addEventListener("play",bgmUi);bgma.addEventListener("pause",bgmUi);
-function bgmSave(){try{localStorage.setItem("bgmT",bgma.currentTime);localStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
+function bgmSave(){try{sessionStorage.setItem("bgmT",bgma.currentTime);sessionStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
 setInterval(bgmSave,3000);addEventListener("pagehide",bgmSave);
 bgmBtn.addEventListener("click",e=>{e.stopPropagation();if(bgma.paused){bgmWant=true;bgma.play().catch(()=>{});}else{bgmWant=false;bgma.pause();}bgmSave();});
 if(bgmWant&&window.top===window)bgma.play().catch(()=>{});
