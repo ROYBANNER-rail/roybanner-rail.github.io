@@ -1,0 +1,149 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>박종훈 — HYPEBEAT 제작 기록</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@600;900&display=swap">
+<style>
+:root{--bg:#0d0c0a;--gold:#d9a84e;--ink:#ede7da;--mut:#9a9284;--ln:rgba(237,231,218,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans KR",sans-serif;line-height:1.8;word-break:keep-all}
+.wrap{max-width:880px;margin:0 auto;padding:110px 6vw 90px}
+nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:space-between;align-items:center;padding:18px 6vw;font-size:11px;letter-spacing:.3em;background:linear-gradient(rgba(13,12,10,.92),transparent)}
+nav b{color:var(--ink);font-weight:700}
+nav a{color:var(--mut);text-decoration:none;letter-spacing:.2em}
+nav a:hover{color:var(--gold)}
+.label{font-size:11px;letter-spacing:.42em;color:var(--gold);display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.label::after{content:"";flex:1;height:1px;background:var(--ln)}
+h1{font-family:"Noto Serif KR",serif;font-weight:900;font-size:clamp(28px,4.6vw,44px);line-height:1.45;margin-bottom:18px}
+.lead{color:var(--mut);font-size:15px;max-width:680px;margin-bottom:44px}
+mark{background:none;color:var(--gold)}
+.sec{margin-bottom:72px}
+.item{display:grid;grid-template-columns:150px 58px 1fr;gap:24px;align-items:center;padding:26px 0;border-bottom:1px dashed var(--ln)}
+.item .thumb{width:150px;height:150px;border-radius:14px;object-fit:cover;border:1px solid var(--ln);background:rgba(237,231,218,.03)}
+.item .yr{font-size:12px;color:var(--gold);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.item h3{font-family:"Noto Serif KR",serif;font-weight:900;font-size:19px;margin-bottom:6px;line-height:1.5}
+.item .role{display:inline-block;font-size:10.5px;letter-spacing:.16em;color:var(--gold);border:1px solid rgba(217,168,78,.4);border-radius:99px;padding:2px 10px;margin-left:9px;vertical-align:2px}
+.item p{color:var(--mut);font-size:13.5px;margin-top:2px}
+.item a{color:#cfc8b8;font-size:12.5px;text-decoration:none;border-bottom:1px solid rgba(217,168,78,.5)}
+.item a:hover{color:var(--gold)}
+.aigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.aig{display:block;text-decoration:none;border:1px solid var(--ln);border-radius:12px;overflow:hidden;background:rgba(237,231,218,.03)}
+.aig img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.aig span{display:block;padding:9px 12px;font-size:12px;color:#d7cfc0;letter-spacing:.02em}
+.aig:hover{border-color:rgba(217,168,78,.5)}
+.plain li{list-style:none;color:var(--mut);font-size:13.5px;padding:12px 0;border-bottom:1px dashed var(--ln)}
+.plain li b{color:#d7cfc0;font-weight:500}
+.mth{width:44px;height:44px;border-radius:8px;object-fit:cover;vertical-align:middle;margin-right:10px;border:1px solid var(--ln)}
+.mthl{width:44px;height:44px;border-radius:8px;object-fit:contain;vertical-align:middle;margin-right:10px;background:#f0ece1;padding:7px;box-sizing:border-box}
+.note{font-size:12px;color:var(--mut);margin-top:40px;opacity:.8}
+#bgmbtn{background:none;border:0;padding:2px;margin-left:18px;cursor:pointer;vertical-align:-2px;opacity:.85}
+#bgmbtn:hover{opacity:1}
+#bgmbtn rect,#bgmbtn path{fill:var(--gold);transform-origin:center;transform-box:fill-box}
+#bgmbtn .iq{display:none}#bgmbtn.playing .iq{display:inline}#bgmbtn.playing .ip{display:none}
+#bgmbtn.playing rect{animation:eq .9s ease-in-out infinite}
+#bgmbtn.playing .q2{animation-delay:.2s}#bgmbtn.playing .q3{animation-delay:.45s}
+@keyframes eq{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+@media(max-width:620px){
+.item{grid-template-columns:104px 1fr;gap:14px;row-gap:4px}
+.item .thumb{width:104px;height:104px;grid-row:1/3}
+.item .yr{grid-column:2}
+.item h3{font-size:16px}
+.aigrid{grid-template-columns:repeat(2,1fr)}
+}
+</style><style>
+.man h2{font-family:"Noto Serif KR",serif;font-weight:900;font-size:clamp(20px,2.6vw,26px);margin:52px 0 16px;line-height:1.45}
+.man h3{font-size:17px;font-weight:700;margin:28px 0 10px;color:#ede7da}
+.man p{color:#a9a192;font-size:14.5px;margin-bottom:12px}
+.man ul{list-style:none;margin:10px 0 18px}
+.man li{color:#a9a192;font-size:14.5px;padding-left:16px;position:relative;margin-bottom:7px;line-height:1.75}
+.man li::before{content:"·";position:absolute;left:0;color:#d9a84e;font-weight:700}
+.man table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:14px}
+.man th{text-align:left;color:#d9a84e;font-weight:700;padding:10px 12px;border-bottom:1px solid rgba(237,231,218,.18);font-size:12.5px;letter-spacing:.06em}
+.man td{padding:11px 12px;border-bottom:1px solid rgba(237,231,218,.08);color:#a9a192;vertical-align:top}
+.man td:first-child{color:#ede7da;white-space:nowrap;padding-right:28px;width:1%}
+.man table{table-layout:auto}
+@media(max-width:620px){.man td:first-child{white-space:normal;padding-right:12px}}
+.man .box{background:rgba(237,231,218,.035);border:1px solid rgba(237,231,218,.1);border-radius:13px;padding:20px 24px;margin:18px 0}
+.man .box b{color:#d9a84e}
+.man code{background:rgba(237,231,218,.07);padding:2px 7px;border-radius:5px;font-size:13px;color:#cfc8b8}
+.man .note{font-size:13px;color:#7d766b;border-left:2px solid rgba(217,168,78,.4);padding-left:14px;margin:16px 0}
+</style>
+</head><body>
+<nav><b>PARK JONG HUN</b><span><a href="./" onclick="sessionStorage.setItem('backToMain','1')">← 포트폴리오로 돌아가기</a><button id="bgmbtn" aria-label="배경음악"><svg class="ip" viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M3.5 1.8v12.4l10-6.2z"/></svg><svg class="iq" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect class="q1" x="1.4" y="4.5" width="2.4" height="7" rx="1.2"/><rect class="q2" x="6.8" y="2.5" width="2.4" height="11" rx="1.2"/><rect class="q3" x="12.2" y="5.5" width="2.4" height="5" rx="1.2"/></svg></button></span></nav>
+<div class="wrap man">
+  <div class="label">HYPEBEAT 제작 기록 · v28</div>
+  <h1>작곡할 때의 판단을<br>도구의 규칙으로 옮겼습니다</h1>
+  <p class="lead">음악을 좋아하는 마음이 있어도, 만드는 법을 배울 기회는 모두에게 같지 않았습니다. AI가 제작의 문턱을 낮춘다면 제가 배운 것도 누군가의 시작을 도울 수 있지 않을까 생각했습니다. 그 질문을 제 작업에서 먼저 시험하며 HYPEBEAT를 만들었습니다. 기본은 도구가 채우되 직접 고른 것은 지키고, 작곡하면서 쌓은 기준을 반복해서 적용할 수 있도록 설계했습니다.</p>
+
+  <h2>자동으로 채우되, 사람의 선택은 지킵니다</h2>
+  <p>처음에는 모든 항목을 직접 채우게 만들었습니다. 쓰다 보니 매번 같은 값을 넣고 있었습니다.</p>
+  <ul>
+    <li>장르를 고르면 <b>편성·포인트 악기·스타일이 자동으로 채워집니다</b></li>
+    <li>이미 직접 고른 항목은 <b>장르를 바꿔도 덮어쓰지 않습니다</b></li>
+    <li>훅은 비워두면 AI가 만들고, 직접 쓰면 그대로 씁니다</li>
+    <li>작사 원칙은 기본값이 들어 있고 수정할 수 있습니다</li>
+  </ul>
+  <p>두 번째 항목이 핵심이었습니다. 자동이 편하려고 넣었는데, 사람이 고른 걸 지우면 더 불편해집니다. 장르를 바꿀 때마다 공들여 고른 설정이 날아가는 것을 겪고 나서 손댄 항목을 따로 추적하게 했습니다.</p>
+
+  <h2>작곡가의 기준을 생성 규칙으로 바꿨습니다</h2>
+  <h3>장르를 섞어도 중심은 유지합니다</h3>
+  <p>여러 장르를 같은 비중으로 섞으면 곡이 흔들립니다. 메인이 중심을 잡고 보조는 악센트로 쓰도록 했습니다.</p>
+  <h3>참고할 것과 새로 만들 것을 구분합니다</h3>
+  <p>참고곡에서는 악기·코드·템포·공간감 같은 질감만 가져옵니다. 참고 가사에서는 문장이 아니라 테마·정서·세계관을 가져옵니다. 표현을 그대로 옮기지 않도록 지시를 구성했습니다.</p>
+  <h3>제 작업 원칙을 저장해 둡니다</h3>
+  <p>작사 원칙과 믹싱 방향을 한 번 적어 두면 다음 작업에도 적용됩니다. 매번 설명하지 않아도 됩니다.</p>
+
+  <h2>선택한 조건이 결과까지 이어지게 했습니다</h2>
+  <p>장르를 골라도 화면 표시만 바뀌고 실제 결과물에는 반영되지 않던 때가 있었습니다. 직접 써 보며 발견해 고쳤습니다. 지금은 선택이 편곡 계획·가사·코드 진행·생성 지시문까지 함께 바뀝니다.</p>
+  <table>
+    <tr><th>넣는 것</th><th>나오는 것</th></tr>
+    <tr><td>장르 · Key · 장단조 · BPM · 보컬 · 편성 · 포인트 악기</td><td>곡 전개 전략</td></tr>
+    <tr><td>가사 방향 · 컨셉 키워드</td><td>가사 전문</td></tr>
+    <tr><td>참고 트랙 주소 최대 3개</td><td>코드 진행</td></tr>
+    <tr><td>참고 가사 · K팝 스타일 선택</td><td>음원 생성 지시문 · 작업 기록</td></tr>
+  </table>
+
+  <h2>비용도 사용자가 판단할 수 있어야 했습니다</h2>
+  <p>AI를 쓰면 돈이 듭니다. 얼마가 나갈지 모르고 누르는 것이 가장 불안했습니다.</p>
+  <ul>
+    <li>텍스트·오디오·이미지 모델을 <b>각각 따로</b> 고릅니다</li>
+    <li>고를 때마다 <b>「5달러로 몇 곡」을 즉시 다시 계산</b>합니다</li>
+    <li>스물네 개 조합의 곡당 비용을 전부 계산해 문서에 적었습니다</li>
+    <li>계산 가정(환율·요청 횟수·분석 길이)과 <b>제외한 비용</b>도 함께 밝혔습니다</li>
+    <li>같은 주소·같은 옵션·같은 모델은 저장해 두어 다시 분석하지 않습니다</li>
+  </ul>
+  <div class="box">
+    <b>다른 유료 모델로 몰래 바꾸지 않습니다</b><br>
+    화면과 서버의 버전이 어긋나 허용되지 않은 모델명이 들어오면, 다른 유료 모델로 조용히 바꾸지 않고 오류로 막습니다.
+    고른 모델과 실제로 돈이 나가는 모델이 달라지는 일을 막기 위한 장치입니다.
+  </div>
+  <p class="note">지원이 끝난 모델은 선택지에서 빼고, 실제로 없는 모델은 만들지 않았습니다. 모델 가격은 공식 문서 주소를 함께 적어 확인할 수 있게 했습니다.</p>
+
+  <h2>고치는 과정에서 돌아갈 길도 만들었습니다</h2>
+  <p>새 버전이 더 나을 거라는 보장이 없었습니다. 그래서 되돌릴 수 있게 만들었습니다.</p>
+  <ul>
+    <li>설치할 때 <b>파일이 빠져 있으면 중단</b>합니다. 반쯤 설치된 상태를 만들지 않습니다</li>
+    <li>새 버전은 임시 폴더에 먼저 받은 뒤 바꿔 넣습니다</li>
+    <li>이전 버전은 버전명과 시각을 붙여 보관합니다</li>
+    <li>마음에 들지 않으면 되돌립니다</li>
+    <li>설정과 열쇠는 따로 둔 폴더에 보관하고 권한을 잠급니다</li>
+  </ul>
+
+  <h2>직접 쓰며 설계를 고쳤습니다</h2>
+  <p>처음에는 제 작업을 빠르게 하려고 만들었습니다. 쓰다 보니 고른 값이 결과에 반영되지 않는 문제, 화면이 복잡해 어디를 눌러야 할지 모르겠는 문제가 보였습니다. 직접 쓰지 않았으면 몰랐을 것들입니다.</p>
+  <p>설치·실행·휴대폰 연결·복원 파일에 번호를 붙여 작업 순서를 드러냈습니다. 「2번 실행」이 두 번 클릭하라는 뜻으로 읽힐 수 있는 부분까지 설명에 보완했습니다.</p>
+  <p>혼자 쓰는 도구와 남이 쓸 수 있는 도구는 다른 물건이었습니다.</p>
+
+  <h2>부록 — 실행 환경</h2>
+  <table>
+    <tr><th>번호</th><th>언제 누르나</th></tr>
+    <tr><td>1 설치·업데이트</td><td>처음 설치하거나 새 버전을 받았을 때 한 번</td></tr>
+    <tr><td>2 실행</td><td>평소 맥에서 쓸 때. 주소와 여섯 자리 코드가 함께 뜸</td></tr>
+    <tr><td>3 휴대폰</td><td>다른 통신망이나 LTE에서 열 때. QR이 나옴</td></tr>
+    <tr><td>4 이전 버전 복원</td><td>새 버전이 마음에 들지 않을 때</td></tr>
+    <tr><td>5 고정 원격 주소</td><td>직접 가진 도메인으로 고정 주소를 만들 때만</td></tr>
+  </table>
+  <p class="note">맥에서는 고정 주소로 열고, 같은 통신망의 휴대폰은 내부 주소, 다른 통신망이나 LTE는 임시 보안 주소와 QR로 엽니다. 휴대폰 주소창에 맥의 고정 주소를 치면 휴대폰 자기 자신을 가리켜 열리지 않습니다.</p>
+
+  <p class="note">박종훈 · v28 · 2026-11-05 기준</p>
+>
