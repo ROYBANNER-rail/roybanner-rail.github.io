@@ -55,10 +55,10 @@ bgma.addEventListener("loadedmetadata",bgmSeek);bgmSeek();
 function bgmUi(){bgmBtn.classList.toggle("playing",!bgma.paused);}
 bgma.addEventListener("play",bgmUi);bgma.addEventListener("pause",bgmUi);
 function bgmSave(){try{sessionStorage.setItem("bgmT",bgma.currentTime);sessionStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
-setInterval(bgmSave,3000);addEventListener("pagehide",bgmSave);
+setInterval(bgmSave,1000);addEventListener("pagehide",bgmSave);
 bgmBtn.addEventListener("click",e=>{e.stopPropagation();if(bgma.paused){bgmWant=true;bgma.play().catch(()=>{});}else{bgmWant=false;bgma.pause();}bgmSave();});
 if(bgmWant&&window.top===window)bgma.play().catch(()=>{});
-if(window.top===window)document.addEventListener("pointerdown",e=>{if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(bgmWant&&bgma.paused)bgma.play().catch(()=>{});});
+if(window.top===window)["pointerdown","keydown","touchstart","wheel","scroll"].forEach(ev=>document.addEventListener(ev,e=>{if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(bgmWant&&bgma.paused)bgma.play().catch(()=>{});},{passive:true}));
 
 // 임베드(메인 오버레이) 모드: 자체 음악 끔, 돌아가기는 패널 닫기
 if(window.top!==window){

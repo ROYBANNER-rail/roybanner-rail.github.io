@@ -544,10 +544,10 @@ addEventListener("load",()=>{
   function ui(){btn.classList.toggle("playing",!a.paused);}
   a.addEventListener("play",ui);a.addEventListener("pause",ui);
   function save(){try{sessionStorage.setItem("bgmT",a.currentTime);sessionStorage.setItem("bgmOn",want?"1":"0");}catch(e){}}
-  setInterval(save,3000);addEventListener("pagehide",save);
+  setInterval(save,1000);addEventListener("pagehide",save);
   btn.addEventListener("click",function(e){e.stopPropagation();if(a.paused){want=true;a.play().catch(function(){});}else{want=false;a.pause();}save();});
   if(want)a.play().catch(function(){});
-  document.addEventListener("pointerdown",function(e){if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(want&&a.paused)a.play().catch(function(){});});
+  ["pointerdown","keydown","touchstart","wheel","scroll"].forEach(function(ev){document.addEventListener(ev,function(e){if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(want&&a.paused)a.play().catch(function(){});},{passive:true});});
 })();
 // 배경음악 안내 — 재생이 실제로 시작되면 한 번만 보여준다
 (function(){
