@@ -320,8 +320,8 @@ addEventListener("touchend",e=>{if(swx===null)return;const dx=e.changedTouches[0
 // 배경음악 — 페이지 간 이어 재생
 const bgmBtn=document.getElementById("bgmbtn"),bgma=document.getElementById("bgma");
 bgma.volume=0.6;
-// 음소거로 먼저 틀어 둔다. 손이 닿는 순간 소리만 켠다.
-if(sessionStorage.getItem("bgmOn")!=="0"){bgma.muted=true;bgma.play().catch(()=>{});}
+// 소리 나는 자동재생을 먼저 시도하고, 막히면 그때만 음소거로 틀어 둔다.
+if(sessionStorage.getItem("bgmOn")!=="0"){bgma.muted=false;bgma.play().catch(()=>{bgma.muted=true;bgma.play().catch(()=>{});});}
 let bgmWant=sessionStorage.getItem("bgmOn")!=="0";
 // 이어듣기 — 다른 페이지에서 오면 그 자리에서 잇는다
 function bgmSeek(){try{const t=parseFloat(sessionStorage.getItem("bgmT"));if(t>0&&isFinite(t)&&Math.abs(bgma.currentTime-t)>1)bgma.currentTime=t;}catch(e){}}
@@ -331,7 +331,6 @@ bgma.addEventListener("play",bgmUi);bgma.addEventListener("pause",bgmUi);
 function bgmSave(){try{sessionStorage.setItem("bgmT",bgma.currentTime);sessionStorage.setItem("bgmOn",bgmWant?"1":"0");}catch(e){}}
 setInterval(bgmSave,1000);addEventListener("pagehide",bgmSave);
 bgmBtn.addEventListener("click",e=>{e.stopPropagation();if(bgma.paused||bgma.muted){bgmWant=true;bgma.muted=false;bgma.play().catch(()=>{});}else{bgmWant=false;bgma.pause();}bgmUi();bgmSave();});
-if(bgmWant)bgma.play().catch(()=>{});
 ["pointerdown","keydown","touchstart","wheel","scroll"].forEach(ev=>document.addEventListener(ev,e=>{if(e.target&&e.target.closest&&e.target.closest("#bgmbtn"))return;if(!bgmWant)return;if(bgma.muted){bgma.muted=false;bgmUi();}if(bgma.paused)bgma.play().catch(()=>{});},{passive:true}));
 // 등장 모션
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}}),{threshold:.18});
